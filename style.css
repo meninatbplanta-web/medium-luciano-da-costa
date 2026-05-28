@@ -1114,60 +1114,140 @@ h1, h2, h3, h4 {
 
 @media (max-width: 767px) {
     :root {
-        --header-height: 70px;
+        --header-height: 110px; /* Aumentado para acomodar duas linhas (Logo/CTA + Menu) */
     }
     
-    /* Header menu hiding (could be expanded into a burger, kept minimal for now) */
+    /* Cabeçalho Grid adaptado para Mobile */
+    .header-container {
+        display: grid;
+        grid-template-areas: 
+            "logo btn"
+            "nav nav";
+        grid-template-columns: 1fr auto;
+        gap: 12px 0;
+        padding: 12px 16px;
+        align-items: center;
+    }
+    
+    .logo {
+        grid-area: logo;
+        font-size: 1.15rem;
+    }
+    
+    .btn-nav {
+        grid-area: btn;
+        display: inline-flex;
+        padding: 6px 12px;
+        font-size: 0.75rem;
+    }
+    
+    /* Menu visível no Mobile com rolagem horizontal (Estilo Pills) */
     .nav-menu {
-        display: none; /* Let navigation remain clean or simplified for layout */
+        grid-area: nav;
+        display: flex;
+        gap: 12px;
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 6px;
+        justify-content: flex-start;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE/Edge */
+    }
+    
+    .nav-menu::-webkit-scrollbar {
+        display: none; /* Chrome/Safari */
+    }
+    
+    .nav-link {
+        font-size: 0.8rem;
+        flex-shrink: 0;
+        padding: 4px 12px;
+        background-color: rgba(197, 168, 128, 0.06);
+        border: 1px solid rgba(197, 168, 128, 0.15);
+        border-radius: 20px;
+        color: var(--accent-gold);
+    }
+    
+    .nav-link::after {
+        display: none; /* Desativa a linha de hover padrão do desktop */
+    }
+    
+    /* Redução de espaçamentos para evitar fadiga de rolagem (Foco UX Mobile) */
+    .audience-section,
+    .modules-section,
+    .author-section,
+    .support-section {
+        padding: 60px 0;
     }
     
     .section-title {
         font-size: 1.8rem;
     }
     
-    /* Hero Section */
+    /* Hero Section Mobile */
     .hero-section {
-        padding-top: calc(var(--header-height) + 40px);
-        padding-bottom: 60px;
+        padding-top: calc(var(--header-height) + 20px);
+        padding-bottom: 50px;
     }
     
     .hero-headline {
         font-size: 2rem;
     }
     
-    /* Audience cards */
+    .hero-image-container {
+        margin-top: 24px;
+    }
+    
+    .hero-img-wrapper {
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+    }
+    
+    /* Público-Alvo (Cards) */
     .audience-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 16px;
     }
     
     .audience-card {
-        padding: 32px 24px;
+        padding: 28px 20px;
     }
     
-    /* Modules grid */
+    .card-title {
+        font-size: 1.25rem;
+        margin-bottom: 12px;
+    }
+    
+    /* Módulos (Grid) */
     .modules-grid {
         grid-template-columns: 1fr;
-        gap: 24px;
+        gap: 20px;
     }
     
     .module-item {
-        padding: 16px;
-        gap: 20px;
+        padding: 16px 12px;
+        gap: 16px;
     }
     
     .module-number {
         font-size: 1.8rem;
     }
     
-    /* Delivery section */
+    /* Formato e Entrega */
+    .delivery-card {
+        padding: 30px 20px;
+    }
+    
+    .delivery-title {
+        font-size: 1.6rem;
+        margin-bottom: 16px;
+    }
+    
     .delivery-visual {
-        padding: 24px;
+        padding: 24px 16px;
     }
     
     .devices-display {
-        gap: 16px;
+        gap: 12px;
     }
     
     .device-icon-box i {
@@ -1175,18 +1255,47 @@ h1, h2, h3, h4 {
         height: 28px;
     }
     
-    /* Author Section */
+    .device-icon-box span {
+        font-size: 0.7rem;
+    }
+    
+    /* Sobre o Autor */
     .author-card {
-        padding: 24px;
+        padding: 28px 20px;
     }
     
     .author-name {
         font-size: 1.8rem;
+        margin-bottom: 16px;
     }
     
-    /* Support and FAQ */
+    .author-bio {
+        font-size: 0.95rem;
+        margin-bottom: 24px;
+    }
+    
+    .author-signature {
+        text-align: center;
+        margin-top: 8px;
+    }
+    
+    /* Garantia */
+    .guarantee-section {
+        padding: 50px 0;
+    }
+    
+    .guarantee-title {
+        font-size: 1.5rem;
+    }
+    
+    .guarantee-text {
+        font-size: 0.95rem;
+    }
+    
+    /* Suporte e FAQ */
     .support-card {
-        padding: 30px 20px;
+        padding: 32px 20px;
+        gap: 24px;
     }
     
     .support-title {
@@ -1194,27 +1303,49 @@ h1, h2, h3, h4 {
     }
     
     .faq-trigger {
-        padding: 16px 20px;
+        padding: 16px;
+        font-size: 0.95rem;
     }
     
-    /* Footer */
+    .faq-content p {
+        padding: 0 16px 16px 16px;
+        font-size: 0.9rem;
+    }
+    
+    /* Rodapé */
     .footer-container {
         grid-template-columns: 1fr;
-        gap: 30px;
+        gap: 24px;
         text-align: center;
     }
     
     .footer-links {
         justify-content: center;
+        gap: 24px;
     }
     
     .footer-copy {
         flex-direction: column;
         text-align: center;
-        gap: 12px;
+        gap: 10px;
+        padding-top: 24px;
     }
     
+    /* Botões em Mobile */
     .btn {
-        width: 100%; /* Make primary CTAs full-width on mobile */
+        width: 100%; /* Botões primários ocupam largura inteira para clique fácil */
+    }
+    
+    /* Ajuste do botão flutuante para não cobrir elementos no mobile */
+    .whatsapp-floating-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+    }
+    
+    .whatsapp-floating-btn svg {
+        width: 24px;
+        height: 24px;
     }
 }
