@@ -1,0 +1,278 @@
+/* -------------------------------------------------------------
+   LINKS PAGE STYLESHEET (DARK GLASSMORPHISM)
+   ------------------------------------------------------------- */
+:root {
+    --bg-primary: #0A0F1D;       /* Deep space navy blue */
+    --bg-card: rgba(18, 24, 41, 0.65);
+    --accent-gold: #C5A880;      /* Muted antique gold */
+    --accent-gold-hover: #D8C09D;
+    
+    --text-primary: #F4F5F7;     /* Off-white */
+    --text-secondary: #9AA1B1;   /* Muted grey-blue */
+    
+    --border-color: rgba(197, 168, 128, 0.15);
+    --border-hover: rgba(197, 168, 128, 0.35);
+    
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    
+    --transition-smooth: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Reset and Base Styles */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    position: relative;
+    padding: 40px 20px;
+}
+
+/* Background Glow */
+.links-bg-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(197, 168, 128, 0.05) 0%, rgba(10, 15, 29, 0) 70%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Container */
+.links-container {
+    width: 100%;
+    max-width: 480px;
+    background: var(--bg-card);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 48px 32px;
+    text-align: center;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    position: relative;
+    z-index: 1;
+    animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Profile Header */
+.profile-header {
+    margin-bottom: 40px;
+}
+
+.profile-avatar-wrapper {
+    position: relative;
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 24px auto;
+    border-radius: 50%;
+    padding: 4px;
+    background: linear-gradient(135deg, var(--border-color) 0%, var(--accent-gold) 100%);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.profile-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--bg-primary);
+}
+
+.profile-name {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+}
+
+.profile-tagline {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    font-weight: 300;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+/* Links List */
+.links-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 48px;
+}
+
+.link-button {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 16px 24px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: all var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.link-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(197, 168, 128, 0.05) 0%, rgba(197, 168, 128, 0) 100%);
+    opacity: 0;
+    transition: opacity var(--transition-smooth);
+}
+
+.link-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-gold);
+    width: 24px;
+    height: 24px;
+    margin-right: 16px;
+    z-index: 1;
+}
+
+.link-icon i {
+    width: 20px;
+    height: 20px;
+}
+
+.link-text {
+    flex: 1;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: left;
+    z-index: 1;
+}
+
+.link-arrow {
+    display: flex;
+    align-items: center;
+    color: var(--text-secondary);
+    transition: transform var(--transition-smooth);
+    z-index: 1;
+}
+
+.link-arrow i {
+    width: 18px;
+    height: 18px;
+}
+
+/* Hover States */
+.link-button:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-hover);
+    box-shadow: 0 10px 25px rgba(197, 168, 128, 0.08);
+}
+
+.link-button:hover::before {
+    opacity: 1;
+}
+
+.link-button:hover .link-arrow {
+    transform: translateX(4px);
+    color: var(--accent-gold);
+}
+
+/* Highlighted Button (WhatsApp) */
+.link-button.highlight {
+    background: linear-gradient(135deg, rgba(197, 168, 128, 0.1) 0%, rgba(197, 168, 128, 0.02) 100%);
+    border: 1px solid rgba(197, 168, 128, 0.3);
+}
+
+.link-button.highlight:hover {
+    border-color: var(--accent-gold);
+    box-shadow: 0 10px 30px rgba(197, 168, 128, 0.15);
+}
+
+/* Social Footer */
+.social-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    color: var(--text-secondary);
+    font-size: 1.25rem;
+    transition: all var(--transition-smooth);
+    text-decoration: none;
+}
+
+.social-icon-btn:hover {
+    color: var(--accent-gold);
+    border-color: var(--accent-gold);
+    background-color: rgba(197, 168, 128, 0.05);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(197, 168, 128, 0.06);
+}
+
+.copyright-text {
+    font-size: 0.75rem;
+    color: rgba(244, 245, 247, 0.35);
+    font-weight: 300;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    body {
+        padding: 20px 10px;
+    }
+    .links-container {
+        padding: 36px 20px;
+        border-radius: 20px;
+    }
+    .profile-name {
+        font-size: 1.75rem;
+    }
+    .link-button {
+        padding: 14px 18px;
+    }
+}
